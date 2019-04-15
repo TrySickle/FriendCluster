@@ -1,0 +1,17 @@
+{
+  "name": "friendclusterserver",
+  "version": "1.0.0",
+  "description": "Server for FriendCluster application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Lee",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.1"
+  }
+}

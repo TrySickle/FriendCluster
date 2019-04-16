@@ -70,6 +70,12 @@ app.put('/users/user/:id', function(req, res) {
 app.get('/users/user/:id/circle', function(req, res) {
     if (req.params.id) {
         User.find({}, (err, users) => {
+            if (users.length == 0) {
+                return res.status(200).json({
+                    centroid: [],
+                    locations: users
+                })
+            }
             var userLocations = []
             var x = 0
             var y = 0
@@ -97,9 +103,23 @@ app.get('/users/user/:id/circle', function(req, res) {
 
             lon = lon * 180 / Math.PI
             lat = lat * 180 / Math.PI
+            if (users.length == 1) {
+                lat = users[0].location.coordinates[0]
+                lon = users[0].location.coordinates[1]
+            }
             return res.status(200).json({
                 centroid: [lat, lon],
                 locations: userLocations
+            })
+        })
+    }
+})
+
+app.delete('/users/user/:id', function(req, res) {
+    if (req.params.id) {
+        User.findOneAndDelete({id: req.params.id}, (err, user) => {
+            return res.status(204).json({
+                deleted: user
             })
         })
     }

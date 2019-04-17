@@ -42,11 +42,20 @@ app.post('/users/user', function(req, res) {
                 coordinates: [req.body.latitude, req.body.longitude]
             }
         }
-        User.create(user, (err, usr) => {
-            return res.status(201).json({
-                user: usr
-            })
+        User.find({id:req.body.id}, (err, users) => {
+            if (users.length) {
+                return res.status(204).json({
+                    user:users
+                });
+            } else {
+                User.create(user, (err, usr) => {
+                  return res.status(201).json({
+                    user: usr
+                  });
+                });
+            }
         })
+        
     }
 })
 

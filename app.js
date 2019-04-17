@@ -30,6 +30,10 @@ app.get('/users/user/:id', function(req, res, next) {
                 user: user
             })
         })
+    } else {
+        return res.status(400).json({
+          message: "missing id"
+        });
     }
 })
 
@@ -56,6 +60,10 @@ app.post('/users/user', function(req, res) {
             }
         })
         
+    } else {
+        return res.status(400).json({
+            message: "missing body values"
+        })
     }
 })
 
@@ -73,6 +81,10 @@ app.put('/users/user/:id', function(req, res) {
                 user: usr
             })
         })
+    } else {
+        return res.status(400).json({
+          message: "missing body values"
+        });
     }
 })
 
@@ -121,6 +133,10 @@ app.get('/users/user/:id/circle', function(req, res) {
                 locations: userLocations
             })
         })
+    } else {
+        return res.status(400).json({
+          message: "missing id"
+        });
     }
 })
 
@@ -131,6 +147,10 @@ app.delete('/users/user/:id', function(req, res) {
                 deleted: user
             })
         })
+    } else {
+        return res.status(400).json({
+          message: "missing id"
+        });
     }
 })
 

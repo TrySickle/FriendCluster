@@ -10,11 +10,12 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 var express = require('express')
 var bodyParser = require('body-parser')
+var morgan = require('morgan')
 
 const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(morgan('dev'))
 app.get('/users', function(req, res) {
     User.find({}, (err, users) => {
         return res.status(200).json({
